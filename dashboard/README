@@ -1,0 +1,214 @@
+# Dairy Factory Analytics Pipeline
+
+## Project Overview
+
+This project demonstrates an end-to-end data engineering and analytics pipeline built using Python and Streamlit.
+
+The goal is to simulate a real-world manufacturing analytics solution where machine sensor data is ingested, validated, transformed, analyzed, and visualized through an interactive dashboard.
+
+The project uses the AI4I 2020 Predictive Maintenance dataset and focuses on identifying machine failures and monitoring production performance through key performance indicators (KPIs).
+
+---
+
+## Business Problem
+
+Manufacturing companies rely on machine sensor data to monitor production quality, equipment health, and operational efficiency.
+
+This project answers questions such as:
+
+* What is the overall machine failure rate?
+* Which machine types experience the most failures?
+* How does tool wear differ across machine types?
+* What operational metrics should engineers monitor?
+
+The solution provides a foundation for predictive maintenance and operational analytics.
+
+---
+
+## Dataset
+
+Source:
+
+AI4I 2020 Predictive Maintenance Dataset
+
+Features include:
+
+* Machine Type
+* Air Temperature
+* Process Temperature
+* Rotational Speed
+* Torque
+* Tool Wear
+* Machine Failure Indicators
+
+Total observations:
+
+* 10,000 records
+
+---
+
+## Project Architecture
+
+Dataset
+→ Ingestion Layer
+→ Data Quality Validation
+→ Data Transformation
+→ KPI Generation
+→ Analytics Dashboard
+
+---
+
+## ETL Pipeline
+
+### 1. Data Ingestion
+
+File:
+
+`ingest.py`
+
+Responsibilities:
+
+* Fetch dataset from UCI Repository
+* Combine features and target variables
+* Store raw data as CSV
+
+Output:
+
+`data/raw/ai4i_2020.csv`
+
+---
+
+### 2. Data Quality Validation
+
+File:
+
+`quality_checks.py`
+
+Responsibilities:
+
+* Check missing values
+* Validate data types
+* Validate numerical ranges
+* Ensure data integrity before processing
+
+---
+
+### 3. Data Transformation
+
+File:
+
+`transform.py`
+
+Responsibilities:
+
+* Create engineered features
+* Calculate temperature difference
+* Calculate wear-per-torque metric
+* Generate machine-level KPI summaries
+
+Outputs:
+
+`data/processed/ai4i_processed.csv`
+
+`data/processed/machine_summary.csv`
+
+---
+
+### 4. Analytics Dashboard
+
+File:
+
+`dashboard/app.py`
+
+Built with:
+
+* Streamlit
+* Plotly
+
+Dashboard Features:
+
+* Total Records
+* Machine Failures
+* Failure Rate
+* Average Torque
+* Machine Failure Analysis
+* Interactive Visualizations
+
+---
+
+## Technologies Used
+
+* Python
+* Pandas
+* Streamlit
+* Plotly
+* Git
+* GitHub
+
+Future Improvements:
+
+* PostgreSQL integration
+* Docker deployment
+* Apache Spark transformations
+* Azure Data Lake Storage
+* Databricks integration
+* Automated ETL scheduling
+
+---
+
+## Dashboard Preview
+
+Current KPIs:
+
+* Records: 10,000
+* Failures: 339
+* Failure Rate: 3.39%
+* Average Torque: 39.99 Nm
+
+Visualizations:
+
+* Machine Failures by Type
+* Tool Wear Analysis
+* Torque Distribution
+* Temperature Difference Distribution
+
+---
+
+## How to Run
+
+Clone repository:
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run ingestion:
+
+```bash
+python src/ingest.py
+```
+
+Run quality checks:
+
+```bash
+python src/quality_checks.py
+```
+
+Run transformations:
+
+```bash
+python src/transform.py
+```
+
+Launch dashboard:
+
+```bash
+streamlit run dashboard/app.py
+```
+
